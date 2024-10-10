@@ -66,7 +66,18 @@ function Header() {
       <img className="logo" src="/icon.png" alt="logo" />
       {user ? (
         <div className="flex items-center gap-3">
-          <a href="/my-trips" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <a
+            href="/create-trip"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button variant="outline" className="rounded-full">
+              + Create Trip
+            </Button>
+          </a>
+          <a
+            href="/my-trips"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <Button variant="outline" className="rounded-full">
               My Trips
             </Button>
