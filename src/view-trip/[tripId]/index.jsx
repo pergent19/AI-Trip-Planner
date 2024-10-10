@@ -22,9 +22,9 @@ function ViewTrip() {
 
         if(docSnap.exists()) {
             setTrip(docSnap.data());
-            console.log('Document: ', docSnap.data());
+            //console.log('Document: ', docSnap.data());
         } else {
-            console.log("No such document");
+            //console.log("No such document");
             toast({
                 variant: "destructive",
                 title: "No Trip found",

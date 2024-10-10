@@ -63,7 +63,15 @@ function Header() {
 
   return (
     <div className="p-3 shadow-sm flex justify-between items-center px-5">
-      <img className="logo" src="/icon.png" alt="logo" />
+      {/* Logo and website name */}
+      <a href="/" style={{ textDecoration: "none", color: "inherit" }}>
+        <div className="flex items-center gap-3">
+          <img className="logo h-8" src="/icon.png" alt="logo" />
+          <span className="text-xl font-semibold" style={{ fontFamily: 'Poppins, sans-serif' }}>Smart Trip AI</span>
+        </div>
+      </a>
+
+      {/* Buttons and user profile */}
       {user ? (
         <div className="flex items-center gap-3">
           <a
@@ -101,6 +109,7 @@ function Header() {
         <Button onClick={signIn}>Sign In</Button>
       )}
 
+      {/* Dialog for Google Sign-In */}
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent>
           <DialogHeader>

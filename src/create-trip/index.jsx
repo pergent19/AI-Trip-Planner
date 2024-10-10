@@ -39,9 +39,9 @@ function CreateTrip() {
     });
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   const login = useGoogleLogin({
     onSuccess: (response) => getUserProfile(response),
@@ -103,7 +103,10 @@ function CreateTrip() {
       .replace("{budget}", formData?.budget)
       .replace("{totalDays}", formData?.noOfDays);
 
+      //console.log(FINAL_PROMPT)
+
     const result = await chatSession.sendMessage(FINAL_PROMPT);
+    //console.log(result)
     setLoading(false);
     saveAITrip(result?.response?.text());
   };
@@ -127,7 +130,7 @@ function CreateTrip() {
         id: docId,
       });
   
-      console.log("Trip saved successfully");
+      //console.log("Trip saved successfully");
     } catch (error) {
       console.error("Error saving trip:", error.message || error);
       console.error("Firestore error details:", error);
