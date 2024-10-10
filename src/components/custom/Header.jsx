@@ -15,6 +15,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { FcGoogle } from "react-icons/fc";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FiMenu } from "react-icons/fi"; // Icon for mobile menu
 
 function Header() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -64,44 +66,53 @@ function Header() {
   return (
     <div className="p-3 shadow-sm flex justify-between items-center px-5">
       {/* Logo and website name */}
-      <a href="/" style={{ textDecoration: "none", color: "inherit" }}>
-        <div className="flex items-center gap-3">
-          <img className="logo h-8" src="/icon.png" alt="logo" />
-          <span className="text-xl font-semibold" style={{ fontFamily: 'Poppins, sans-serif' }}>Smart Trip AI</span>
-        </div>
+      <a href="/" className="flex items-center gap-3" style={{ textDecoration: "none", color: "inherit" }}>
+        <img className="logo h-8" src="/icon.png" alt="logo" />
+        <span className="text-xl font-semibold" style={{ fontFamily: 'Poppins, sans-serif' }}>Smart Trip AI</span>
       </a>
 
       {/* Buttons and user profile */}
       {user ? (
         <div className="flex items-center gap-3">
-          <a
-            href="/create-trip"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
+          {/* For large screens: Show Create Trip and My Trips */}
+          <a href="/create-trip" className="hidden sm:block" style={{ textDecoration: "none", color: "inherit" }}>
             <Button variant="outline" className="rounded-full">
               + Create Trip
             </Button>
           </a>
-          <a
-            href="/my-trips"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
+          <a href="/my-trips" className="hidden sm:block" style={{ textDecoration: "none", color: "inherit" }}>
             <Button variant="outline" className="rounded-full">
               My Trips
             </Button>
           </a>
+
+          {/* Avatar and menu for small screens */}
           <Popover>
             <PopoverTrigger>
-              <img
-                src={user?.picture}
-                alt="profile-picture"
-                className="h-[35px] w-[35px] rounded-full"
-              />
+              <Avatar>
+                <AvatarImage src={user?.picture} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
             </PopoverTrigger>
-            <PopoverContent>
-              <h2 className="cursor-pointer" onClick={logout}>
+
+            <PopoverContent className="p-4">
+              {/* Show on small screens */}
+              <div className="block sm:hidden">
+                <a href="/create-trip" className="block mb-3">
+                  <Button variant="outline" className="w-full">
+                    + Create Trip
+                  </Button>
+                </a>
+                <a href="/my-trips" className="block mb-3">
+                  <Button variant="outline" className="w-full">
+                    My Trips
+                  </Button>
+                </a>
+              </div>
+              
+              <Button variant="outline" className="w-full" onClick={logout}>
                 Logout
-              </h2>
+              </Button>
             </PopoverContent>
           </Popover>
         </div>
